@@ -1,3 +1,22 @@
+body{
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('../IMAGES/train22.jpg');
+    background-size: cover;
+    background-position:center;
+    background-repeat: no-repeat;
+}
+.booking-form{
+    max-width: 350px;
+    border: 1px solid #ced4da;
+    margin: 10% auto 0;
+    padding: 0 20px 20px;
+    border-radius: 10px;
+}
+.booking-form label{
+    margin-bottom: 5px;
+    margin-top:10px;
+    font-size: 12px;
+    color:#fff
+}
 .navbar{
     background-color:#1C2331;
     color: white;
@@ -6,6 +25,29 @@
 .navbar:hover{
     opacity: 1;
 }
-#bookingform{
-    justify-content: center;
+
+.btn{
+    margin-top: 20px;
+    color: white;
+}
+
+.radio-btn{
+    display: flex;
+    color: white;
+}
+
+.form-control{
+    font-size: 12px !important;
+    border-radius: 6 !important;
+    color: #fff !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+input::placeholder{
+    color: #fff !important;
+}
+
+.flexing{
+    display: inline-flex;
 }

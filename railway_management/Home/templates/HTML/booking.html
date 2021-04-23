@@ -17,13 +17,53 @@
 </head>
 
 <body>
-    <section id='bookingform'>
-        <div class="container">
-            <form action="" method="POST">
-                {% csrf_token %}
-            </form>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Railway Reservations</a>
         </div>
-    </section>
+    </nav>
+    <form action="" method="POST">
+        <div class="booking-form">
+            <div class="row justify-content-evenly">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <label for="fname">First name</label>
+                    <input type="text" name="fname" id="" class="form-control" placeholder="First name" required>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <label for="lname">Last name</label>
+                    <input type="text" name="lname" id="" class="form-control" placeholder="Last name" required>
+                </div>
+            </div>
+            <label for="email">email</label>
+            <input type="email" name="email" id="" class="form-control" placeholder="Email Address" required>
+            <div class="row justify-content-evenly">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <label for="age">Age</label>
+                    <input type="number" name="age" id="" class="form-control" value="10" required>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <label for="gender" style="margin-bottom: 10px;">GENDER</label>
+                    <ul style="display: flex;">
+                        <li style="display: flex;">
+                            <input class="flexing" type="radio" name="male" id="" checked="checked"><span style="color: #ffff;">Male</span>
+                            
+                        </li>
+                        <li style="display: flex;margin-right: 40px;">
+                            <input class="flexing" type="radio" name="female"><span style="color: #ffff;">Female</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <label for="source">Source</label>
+            <input type="text" name="source" id="" class="form-control" placeholder="Your Source location" required>
+            <label for="destination">Destination</label>
+            <input type="text" name="destination" id="" placeholder="Your desired destination" class="form-control" required>
+            <label for="date">Date</label>
+            <input type="date" name="date" id="" class="form-control" required>
+        <button class="btn btn-outline-dark" type="submit">SUBMIT</button>
+        </div>
+        
+    </form>
 <footer class='w-100 foot'>
     <p class="footer-text"
         style="text-align: center;font-weight: 500;font-family: Georgia, 'Times New Roman', Times, serif;">© 2021
