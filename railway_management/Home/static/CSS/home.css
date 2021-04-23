@@ -1,0 +1,19 @@
+body{
+    justify-content: center;
+
+}
+.navbar{
+    background-color:#1C2331;
+    color: white;
+    opacity: 0.5;
+}
+.navbar:hover{
+    opacity: 1;
+   
+}
+a:link{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
