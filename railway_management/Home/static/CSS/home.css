@@ -9,8 +9,13 @@ body{
 }
 .navbar:hover{
     opacity: 1;
-   
 }
+.featurette:hover{
+    transform: scale(0.97);
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0);
+  }
+   
+
 a:link{
     text-decoration: none;
 }
