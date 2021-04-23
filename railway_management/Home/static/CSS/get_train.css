@@ -1,0 +1,18 @@
+body{
+    justify-content: center;
+    align-items: center;
+}
+.navbar{
+    background-color:#1C2331;
+    color: white;
+    opacity: 0.5;
+}
+.navbar:hover{
+    opacity: 1;
+}
+#f-img{
+    height: 550px;
+}
+#searchbar{
+    margin: 35px;
+}

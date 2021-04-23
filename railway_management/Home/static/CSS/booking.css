@@ -1,0 +1,11 @@
+.navbar{
+    background-color:#1C2331;
+    color: white;
+    opacity: 0.5;
+}
+.navbar:hover{
+    opacity: 1;
+}
+#bookingform{
+    justify-content: center;
+}

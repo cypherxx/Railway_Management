@@ -4,4 +4,10 @@ def index(request):
 
     return render(request,'HTML/index.html')
 
-# Create your views here.
+def get_train_details(request):
+
+    return render(request,'HTML/get_train_details.html')
+
+def book_seat(request):
+
+    return render(request,'HTML/booking.html')

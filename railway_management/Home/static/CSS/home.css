@@ -1,6 +1,15 @@
 body{
     justify-content: center;
-
+    font-family: 'Cinzel', serif;
+}
+h2{
+    font-weight: 400;
+    font-size: 35px;
+    
+}
+marquee{
+    font-family: 'Cinzel', serif;
+    text-shadow:5px 5px 10px black;
 }
 .navbar{
     background-color:#1C2331;
@@ -14,7 +23,6 @@ body{
     transform: scale(0.97);
     box-shadow: 0 4px 8px 0 rgb(0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0);
   }
-   
 
 a:link{
     text-decoration: none;
@@ -22,6 +30,9 @@ a:link{
 a:hover{
     text-decoration: none;
 }
-.modal-backdrop{
-    display: none;
+
+.modal-label{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
 }

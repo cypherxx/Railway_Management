@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Inconsolata:wght@200&family=Playfair+Display:ital,wght@1,600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="{% static 'CSS/home.css' %}">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -114,20 +119,55 @@
     <center style="margin: 50px;">
         <a href="#" class="btn btn-outline-dark">SUBMIT</a>
     </center> -->
-    <marquee behavior="" direction="left" style="margin-top: 15px;font-family:'Times New Roman', Times, serif;font-size: 30px;font-weight: 700;"> RESERVE YOUR RAILWAY SEATS INSTANTLY </marquee>
+    <marquee behavior="" direction="left" style="margin-top: 15px;font-size: 30px;font-weight: 700;"> RESERVE YOUR RAILWAY SEATS INSTANTLY </marquee>
+    <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content border border-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLongTitle">
+                        <strong>Title</strong>
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="Source" class="modal-label" style="text-align: center;">SOURCE</label>
+                            <input type="text" name="source" class="form-control"
+                                placeholder="Enter Your Required Source" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="modal-label" for="SignupInputFname">DESTINATION</label>
+                            <input type="text" name="Destination" class="form-control" 
+                                placeholder="Enter Your Required Destination" required />
+                        </div>
+                        
+                        <button type="submit" class="btn btn-outline-dark mx-2 my-2">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <class class="container marketing">
     
             <!-- START THE FEATURETTES -->
     
             <hr class="featurette-divider">
-            <a data-bs-toggle="modal"
-            data-bs-target="#SignupModalCenter"
-             data-bs-backdrop="static" data-bs-keyboard="false">
+            <a href="#ModalCenter" data-bs-toggle="modal"
+            data-bs-target="#ModalCenter"
+             >
+            
             <div class="row featurette" data-aos="fade-in" data-aos-duration="2000">
                 
                 <div class="col-md-7">
-                    <h2 class="featurette-heading" style="color: black;"><span class="text-muted">Source & Destination</span></h2>
+                    <h2 class="featurette-heading" style="color: black;">Source & Destination</h2>
 
                     <p class="lead" style="text-align: justify;color: black;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias officiis repellendus placeat ad sint aliquid libero suscipit recusandae ea dignissimos unde quis quo ipsam veniam dolor cum deserunt, harum eaque.</p>
                     
@@ -137,69 +177,17 @@
                         style="width: 400px; height: 300px; float: right;"
                         src="{% static 'IMAGES/train9.jfif' %}" data-holder-rendered="true">
                 </div>
-                    <div class="modal fade" data-backdrop="static" id="SignupModalCenter" tabindex="-1" role="dialog"
-                        aria-labelledby="SignupModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content border border-dark">
-                                <div class="modal-header" style="background-color: cadetblue;">
-                                    <h5 class="modal-title" id="SignupModalLongTitle">
-                                        <strong>SIGN UP FORM</strong>
-                                    </h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="" method="POST">
-                                        {% csrf_token %}
-                                        <div class="form-group">
-                                            <label for="SignupInputFname">UserName</label>
-                                            <input type="text" name="Username" class="form-control" id="SignupInputFname"
-                                                aria-describedby="emailHelp" placeholder="Enter Unique Username" required />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="SignupInputFname">First Name</label>
-                                            <input type="text" name="First_name" class="form-control" id="SignupInputFname"
-                                                aria-describedby="emailHelp" placeholder="Enter First Name" required />
-                                        </div>
-                                        <div class="form-group my-2">
-                                            <label for="SignupInputLname">Last Name</label>
-                                            <input type="text" name="Last_name" class="form-control" id="SignupInputLname"
-                                                aria-describedby="emailHelp" placeholder="Enter Last Name" required />
-                                        </div>
-                                        <div class="form-group my-2">
-                                            <label for="SignupInputEmail1">Email Address</label>
-                                            <input type="email" name="Email" class="form-control" id="SignupInputEmail1"
-                                                aria-describedby="emailHelp" placeholder="Enter Email ID" required />
-                                        </div>
-                                        <div class="form-group my-2">
-                                            <label for="SignupInputPassword1">Password</label>
-                                            <input type="password" name="Password1" class="form-control" id="SignupInputPassword1"
-                                                placeholder="Enter Password" required />
-                                        </div>
-                                        <div class="form-group my-2">
-                                            <label for="SignupInputPassword1">Confirm Password</label>
-                                            <input type="password" name="Password2" class="form-control" id="SignupInputPassword1"
-                                                placeholder=" Confirm Password" required />
-                                        </div>
-                                        <button type="submit" class="btn btn-outline-dark mx-2 my-2">
-                                            Submit
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     
             </div>
             </a>
             <hr class="featurette-divider">
             
-            <a href="...">
+            <a href="{% url 'gtd' %}">
             <div class="row featurette" data-aos="fade-in" data-aos-duration="2500">
                 
                 <div class="col-md-7 order-md-2">
-                    <h2 class="featurette-heading" style="color: black;"><span class="text-muted">Get Train Details</span></h2>
+                    <h2 class="featurette-heading" style="color: black;">Get Train Details</h2>
                     <p class="lead" style="text-align: justify;color: black;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat facere omnis placeat eligendi, ad pariatur? Fugiat, sapiente expedita dolorem architecto maiores labore deleniti obcaecati nemo, voluptas laboriosam neque itaque provident!.</p>
                     
                 </div>
@@ -212,11 +200,11 @@
             </div>
             </a>
             <hr class="featurette-divider" >
-            <a href="...">
+            <a href="{% url 'book' %}">
             <div class="row featurette" data-aos="fade-in" data-aos-duration="3000">
                 
                 <div class="col-md-7">
-                    <h2 class="featurette-heading" style="color: black;"><span class="text-muted">Passenger Ticket Booking</span></h2>
+                    <h2 class="featurette-heading" style="color: black;">Passenger Ticket Booking</h2>
                     <p class="lead" style="text-align: justify;color: black;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium praesentium, voluptatibus quod impedit deserunt necessitatibus architecto amet quas magni ullam debitis, id similique blanditiis a dolore autem numquam quam officiis.
                     </p> 
                 </div>
@@ -234,7 +222,7 @@
     </div>
     </div>
     <footer class='w-100 foot'>
-        <p class="footer-text" style="text-align: center;font-weight: 500;font-family: Georgia, 'Times New Roman', Times, serif;">© 2021 RAILWAY RESERVATION</p>
+        <p class="footer-text" style="text-align: center;font-weight: 500;">© 2021 RAILWAY RESERVATION</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"

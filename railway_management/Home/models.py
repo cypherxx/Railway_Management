@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here
 
-
 class BogieVkp1(models.Model):
     bogie_id = models.CharField(primary_key=True, max_length=10)
     train = models.ForeignKey('TrainVkp1', models.DO_NOTHING, blank=True, null=True)
@@ -12,7 +11,6 @@ class BogieVkp1(models.Model):
     class Meta:
         managed = True
         db_table = 'bogie_vkp1'
-
 
 class BookingsVkp4(models.Model):
     pnr = models.IntegerField(primary_key=True)
@@ -35,7 +33,6 @@ class RouteStationVkp1(models.Model):
     class Meta:
         managed = True
         db_table = 'route_station_vkp1'
-
 
 class RouteVkp1(models.Model):
     route_id = models.CharField(primary_key=True, max_length=10)
