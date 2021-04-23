@@ -11,6 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'CSS/home.css' %}">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
     <title>RAILWAY RESERVATIONS</title>
 </head>
 
@@ -41,11 +44,8 @@
                     </div>
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Be like a train; go in the rain, go in the sun, go in the storm, go in the dark tunnels! Be like a train; concentrate on your road and go with no hesitation!
-
                             <p style="text-align:right;"><h6>&nbsp;&nbsp;&nbsp; -Mehmet Murat ildan</h6></p>
-
                             </h5>
-
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -55,12 +55,8 @@
                     </div>
                     <div class="carousel-caption d-none d-md-block">
                         <h4>The trains always arrive at your station. The question is which one to take?
-
-                            
                             <p style="text-align:right;"><h6>&nbsp;&nbsp;&nbsp; -Mehmet Murat ildan</h6></p>
-
                             </h4>
-
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -70,13 +66,8 @@
                     </div>
                     <div class="carousel-caption d-none d-md-block">
                         <h4>Driving the train doesn't set its course. The real job is laying the track.
-
-                           
-                            
                             <p style="text-align:right;"><h6>&nbsp;&nbsp;&nbsp; -Ed Catmull</h6></p>
-
                             </h4>
-
                     </div>
                 </div>
             </div>
@@ -123,14 +114,16 @@
     <center style="margin: 50px;">
         <a href="#" class="btn btn-outline-dark">SUBMIT</a>
     </center> -->
-    <marquee behavior="alternate" direction="left" style="margin-top: 15px;font-family:'Times New Roman', Times, serif;font-size: 30px;font-weight: 700;"> RESERVE YOUR RAILWAY SEATS INSTANTLY </marquee>
+    <marquee behavior="" direction="left" style="margin-top: 15px;font-family:'Times New Roman', Times, serif;font-size: 30px;font-weight: 700;"> RESERVE YOUR RAILWAY SEATS INSTANTLY </marquee>
     <div class="container">
         <class class="container marketing">
     
             <!-- START THE FEATURETTES -->
     
             <hr class="featurette-divider">
-            <a  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <a data-bs-toggle="modal"
+            data-bs-target="#SignupModalCenter"
+             data-bs-backdrop="static" data-bs-keyboard="false">
             <div class="row featurette" data-aos="fade-in" data-aos-duration="2000">
                 
                 <div class="col-md-7">
@@ -144,30 +137,60 @@
                         style="width: 400px; height: 300px; float: right;"
                         src="{% static 'IMAGES/train9.jfif' %}" data-holder-rendered="true">
                 </div>
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal fade" data-backdrop="static" id="SignupModalCenter" tabindex="-1" role="dialog"
+                        aria-labelledby="SignupModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content border border-dark">
+                                <div class="modal-header" style="background-color: cadetblue;">
+                                    <h5 class="modal-title" id="SignupModalLongTitle">
+                                        <strong>SIGN UP FORM</strong>
+                                    </h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
                                 <div class="modal-body">
                                     <form action="" method="POST">
-                                        <label for="source">SOURCE</label>
-                                        <input type="text" name="source" id="" class="form-control" placeholder="Enter your required source">
-                                        <label for="source">DESTINATION</label>
-                                        <input type="text" name="destination" id="" class="form-control" placeholder="Enter your required destination">
-                                        <button type="submit" class="btn btn-outline-dark"> SUBMIT</button>
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="SignupInputFname">UserName</label>
+                                            <input type="text" name="Username" class="form-control" id="SignupInputFname"
+                                                aria-describedby="emailHelp" placeholder="Enter Unique Username" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="SignupInputFname">First Name</label>
+                                            <input type="text" name="First_name" class="form-control" id="SignupInputFname"
+                                                aria-describedby="emailHelp" placeholder="Enter First Name" required />
+                                        </div>
+                                        <div class="form-group my-2">
+                                            <label for="SignupInputLname">Last Name</label>
+                                            <input type="text" name="Last_name" class="form-control" id="SignupInputLname"
+                                                aria-describedby="emailHelp" placeholder="Enter Last Name" required />
+                                        </div>
+                                        <div class="form-group my-2">
+                                            <label for="SignupInputEmail1">Email Address</label>
+                                            <input type="email" name="Email" class="form-control" id="SignupInputEmail1"
+                                                aria-describedby="emailHelp" placeholder="Enter Email ID" required />
+                                        </div>
+                                        <div class="form-group my-2">
+                                            <label for="SignupInputPassword1">Password</label>
+                                            <input type="password" name="Password1" class="form-control" id="SignupInputPassword1"
+                                                placeholder="Enter Password" required />
+                                        </div>
+                                        <div class="form-group my-2">
+                                            <label for="SignupInputPassword1">Confirm Password</label>
+                                            <input type="password" name="Password2" class="form-control" id="SignupInputPassword1"
+                                                placeholder=" Confirm Password" required />
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-dark mx-2 my-2">
+                                            Submit
+                                        </button>
                                     </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Understood</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
             </div>
             </a>
             <hr class="featurette-divider">
@@ -216,10 +239,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
         <script>
             AOS.init();
-        </script>
+        </script> -->
 </body>
 
 </html>
