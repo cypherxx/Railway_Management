@@ -1,0 +1,121 @@
+ CREATE TABLE train_vkp1(
+train_id varchar2(10) PRIMARY KEY,
+train_name varchar2(50) NOT NULL,
+train_type varchar2(50),
+no_of_bogies number(10) NOT NULL,
+source_name varchar2(50) NOT NULL,
+dest_name varchar2(50) NOT NULL
+);
+
+CREATE TABLE route_vkp1(
+route_id varchar2(10) PRIMARY KEY,
+no_of_stations number(10) NOT NULL,
+train_id varchar2(10) REFERENCES train_vkp1(train_id)
+);
+
+CREATE TABLE station_vkp1(
+station_id varchar2(10) PRIMARY KEY,
+stations_name varchar2(10) UNIQUE
+);
+
+CREATE TABLE bogie_vkp1(
+bogie_id varchar2(10) PRIMARY KEY,
+train_id varchar2(10) REFERENCES train_vkp1(train_id),
+no_of_seats number(10) NOT NULL,
+bogie_type varchar2(50) CHECK(bogie_type='AC' OR
+bogie_type='NON AC')
+);
+
+
+CREATE TABLE seat_vkp1(
+seat_id varchar2(10) PRIMARY KEY,
+bogie_id varchar2(10) REFERENCES bogie_vkp1(bogie_id),
+seat_status varchar2(50) CHECK(seat_status='AVAILABLE'OR
+seat_status='NOT AVAILABLE')
+);
+
+CREATE TABLE route_station_vkp1(
+station_id varchar2(10) REFERENCES station_vkp1(station_id),
+route_id varchar2(10) REFERENCES route_vkp1(route_id)
+);
+
+CREATE TABLE bookings_vkp4(
+PNR number(10) PRIMARY KEY,
+p_name varchar2(50) NOT NULL,
+p_age number(10) NOT NULL,
+p_gender varchar2(10),
+p_source varchar2(50) NOT NULL,
+p_destination varchar2(50) NOT NULL,
+journey_date date NOT NULL,
+CHECK(p_gender='F' OR p_gender='M'),
+seat_id varchar2(10) REFERENCES seat_vkp1(seat_id)
+);
+
+CREATE OR REPLACE TRIGGER journey_date_trigger4 BEFORE INSERT ON
+bookings_vkp4
+FOR EACH ROW
+BEGIN
+IF (:NEW.journey_date-sysdate>7) THEN
+raise_application_error(-20001, 'You cannot book a seat more than 7 days early');
+END IF;
+END;
+
+CREATE OR REPLACE TRIGGER SR_DS1
+BEFORE INSERT ON BOOKINGS_VKP4
+FOR EACH ROW
+BEGIN
+ IF(:NEW.P_SOURCE = :NEW.P_DESTINATION)
+ THEN
+ raise_application_error(-20001, 'SOURCE AND DESTINATION CANNOT BE SAME');
+ END IF;
+END;
+
+
+create or replace function get_train_names(src_name station_vkp1.stations_name%type, destination station_vkp1.stations_name%type)
+return sys_refcursor
+as
+trains sys_refcursor;
+E_invalid_name EXCEPTION;
+begin
+open trains for
+select train_name from train_vkp1 where source_name=src_name and dest_name=destination;
+ IF SQL%NOTFOUND THEN
+ RAISE E_INVALID_NAME;
+ END IF;
+EXCEPTION
+ WHEN E_INVALID_NAME THEN
+ raise_application_error(-20020,'Please enter correct information');
+return trains;
+end;
+
+
+create or replace function get_train_details(train train_vkp1.train_name%type)
+return sys_refcursor
+as
+train_detail sys_refcursor;
+E_invalid_name EXCEPTION;
+begin
+open train_detail for
+select * from train_vkp1 where train_name=train;
+ IF SQL%NOTFOUND THEN
+ RAISE E_INVALID_NAME;
+ END IF;
+EXCEPTION
+ WHEN E_INVALID_NAME THEN
+ raise_application_error(-20020,'Please enter correct information');
+return train_detail;
+end;
+
+
+create or replace function get_train_route(trains_id train_vkp1.train_id%type)
+return sys_refcursor
+as
+train_route sys_refcursor;
+
+begin
+open train_route for
+select stations_name from station_vkp1 where station_id in (select station_id from route_station_vkp1 where route_id in (select route_id from route_vkp1 where train_id=trains_id));
+
+return train_route;
+end;
+
