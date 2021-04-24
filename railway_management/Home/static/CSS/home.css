@@ -1,15 +1,15 @@
 body{
     justify-content: center;
-    font-family: 'Cinzel', serif;
+   
 }
 h2{
     font-weight: 400;
-    font-size: 35px;
+    font-size: 30px;
     
 }
 marquee{
     font-family: 'Cinzel', serif;
-    text-shadow:5px 5px 10px black;
+    
 }
 .navbar{
     background-color:#1C2331;
