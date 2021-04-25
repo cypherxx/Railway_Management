@@ -73,41 +73,26 @@ BEGIN
 END;
 
 
-create or replace function get_train_names(src_name station_vkp1.stations_name%type, destination station_vkp1.stations_name%type)
-return sys_refcursor
-as
-trains sys_refcursor;
-E_invalid_name EXCEPTION;
-begin
-open trains for
-select train_name from train_vkp1 where source_name=src_name and dest_name=destination;
- IF SQL%NOTFOUND THEN
- RAISE E_INVALID_NAME;
- END IF;
-EXCEPTION
- WHEN E_INVALID_NAME THEN
- raise_application_error(-20020,'Please enter correct information');
-return trains;
-end;
-
-
 create or replace function get_train_details(train train_vkp1.train_name%type)
 return sys_refcursor
 as
 train_detail sys_refcursor;
-E_invalid_name EXCEPTION;
+
 begin
 open train_detail for
 select * from train_vkp1 where train_name=train;
- IF SQL%NOTFOUND THEN
- RAISE E_INVALID_NAME;
- END IF;
-EXCEPTION
- WHEN E_INVALID_NAME THEN
- raise_application_error(-20020,'Please enter correct information');
 return train_detail;
 end;
 
+create or replace function get_train_names(src_name station_vkp1.stations_name%type, destination station_vkp1.stations_name%type)
+return sys_refcursor
+as
+trains sys_refcursor;
+begin
+open trains for
+select train_name from train_vkp1 where source_name=src_name and dest_name=destination;
+return trains;
+end;
 
 create or replace function get_train_route(trains_id train_vkp1.train_id%type)
 return sys_refcursor
@@ -120,4 +105,3 @@ select stations_name from station_vkp1 where station_id in (select station_id fr
 
 return train_route;
 end;
-
