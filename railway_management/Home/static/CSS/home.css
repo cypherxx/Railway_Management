@@ -8,6 +8,11 @@ h2{
     font-size: 30px;
     
 }
+::selection{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
 marquee{
     font-family: 'Cinzel', serif;
     

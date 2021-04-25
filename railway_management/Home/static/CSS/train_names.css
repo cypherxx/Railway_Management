@@ -1,22 +1,56 @@
 body{
-    background-color: white;
-    min-height: 100%;
+    background-image: linear-gradient(125deg,#fff,grey);
+    
+    
+    
   }
   .navbar{
     background-color:#1C2331;
     color: white;
     opacity: 0.5;
 }
+.navbar:hover{
+    opacity: 1;
+}
+.content{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+a:link{
+    text-decoration: none;
+    color: #1C2331;
+}
+a:hover{
+    text-decoration: none;
+}
+.card-pos{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 25vh;
   
-  .featurette:hover{
-    transform: scale(0.97);
-    box-shadow: 0 4px 8px 0 rgb(0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0);
-  }
-  .words{
-    text-align: justify;
-    text-justify: inter-word;
-  }
-  a.custom-card
-  {
-    color: inherit;
+}
+::selection{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.card-pos h2{
+  font-size: 15px;
+}
+.cont{
+  position: absolute;
+  bottom: 10px;
+}
+li{
+list-style-type: none;
+}
+.container h2{
+  font-size: 20px !important;
+  font-weight: 200 !important;
+}
+  .page-footer{
+    
+    position: absolute;
+    bottom: 0;
   }

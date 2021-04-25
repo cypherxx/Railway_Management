@@ -31,9 +31,9 @@ def get_train_info(request):
         conn=cx_Oracle.connect('qwerty','qwerty','localhost/orcl',encoding = 'UTF-8')
         cur=conn.cursor()
         myvar= cur.var(cx_Oracle.CURSOR)
-        cur.callfunc('get_train_detail',myvar,[train_name])
-        train_list1=myvar.getvalue().fetchall()
-        print(train_list1)
-        return render(request,'HTML/index.html',{'t_names2':train_list1})
+        cur.callfunc('get_train_details',myvar,[train_name])
+        train_info = myvar.getvalue().fetchall()
+        print(train_info)
+        return render(request,'HTML/index.html',{'t_names2':train_info})
 
 
