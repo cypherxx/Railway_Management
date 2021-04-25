@@ -22,16 +22,18 @@
             <a class="navbar-brand" href="#">Railway Reservations</a>
         </div>
     </nav>
-    <form action="" method="POST">
+    <form action="{% url 'send_m' %}" method="POST">
+        
         <div class="booking-form">
+            {% csrf_token %}
             <div class="row justify-content-evenly">
                 <div class="col-sm-6 col-md-6 col-lg-6">
                     <label for="fname" style="font-size:18px;">First name</label>
-                    <input type="text" name="fname" id="" class="form-control" placeholder="First name" required>
+                    <input type="text" name="fname" id="" class="form-control" placeholder="First name" required  >
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6">
                     <label for="lname" style="font-size:18px;">Last name</label>
-                    <input type="text" name="lname" id="" class="form-control" placeholder="Last name" required>
+                    <input type="text" name="lname" id="" class="form-control" placeholder="Last name" required >
                 </div>
             </div>
             <label for="email" style="font-size:18px;">Email</label>
@@ -45,19 +47,19 @@
                     <label for="gender" style="margin-bottom: 10px; font-size: 18px;">GENDER</label>
                     <ul style="display: flex;">
                         <li style="display: flex;margin-left: -25px">
-                            <input class="flexing" type="radio" name="gender"><span style="color: #ffff;">Male</span>
+                            <input class="flexing" type="radio" name="gender" value="Male"><span style="color: #ffff;">Male</span>
                             
                         </li>
                         <li style="display: flex;margin-left: 10px;">
-                            <input class="flexing" type="radio" name="gender"><span style="color: #ffff;">Female</span>
+                            <input class="flexing" type="radio" name="gender" value="Female"><span style="color: #ffff;">Female</span>
                         </li>
                     </ul>
                 </div>
             </div>
             <label for="source" style="font-size:18px;">Source</label>
-            <input type="text" name="source" id="" class="form-control" placeholder="Your Source location" required>
+            <input type="text" name="source" id="" class="form-control" placeholder="Your Source location" required >
             <label for="destination" style="font-size:18px;">Destination</label>
-            <input type="text" name="destination" id="" placeholder="Your desired destination" class="form-control" required>
+            <input type="text" name="destination" id="" placeholder="Your desired destination" class="form-control" required >
             <label for="date" style="font-size:18px;">Date</label>
             <input type="date" name="date" id="" class="form-control" required>
         <button class="btn btn-outline-dark" type="submit">SUBMIT</button>

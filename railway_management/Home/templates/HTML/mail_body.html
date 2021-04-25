@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+
+    <title>RAILWAY TICKET RESERVATION</title>
+    <style>
+        *{
+            margin: 10px;
+            box-sizing: border-box;
+        }
+        body{
+            border-radius: 50px;
+            margin: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card container form-control" style="background-color:black;">
+        <h2 class="card-header" style="color: white; text-align: center; padding-top: 5px;"><b>
+                    RAILWAY TICKET RESERVATION
+            </b>
+        </h2>
+        <div class="card-body" style="background-color: white;">
+            <h3 style="font-family: Arial, Helvetica, sans-serif; color: black;">Hello, {{fname}} {{lname}}</h3>
+            <h3 style="font-family:Arial, Helvetica, sans-serif; color: black;">Your seat for the railway ticket from {{s}} to {{dest}} is booked.<br>Kindly check details below.</h3>
+            
+            <h3 style="font-family:Arial, Helvetica, sans-serif; color: black; padding-bottom: 60px;">Name: {{fname}} {{lname}}<br>
+            Age: {{age}}<br>
+            Gender: {{gender}}<br>
+            From : {{s}}<br>
+            To: {{dest}}<br>
+            Date: {{date}}<br>
+            Seat id: {{seat}}</h3>
+            <h3 style="font-family: Arial, Helvetica, sans-serif; color: black;">Thank You!</h3>
+            
+        </div>
+    </div>
+
+</body>
+
+</html>
