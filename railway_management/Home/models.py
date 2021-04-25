@@ -3,23 +3,24 @@ from django.db import models
 # Create your models here
 
 class BogieVkp1(models.Model):
-    bogie_id = models.CharField(primary_key=True, max_length=10)
+    bogie_id = models.TextField(primary_key=True)  # This field type is a guess.
     train = models.ForeignKey('TrainVkp1', models.DO_NOTHING, blank=True, null=True)
     no_of_seats = models.IntegerField()
-    bogie_type = models.CharField(max_length=50, blank=True, null=True)
+    bogie_type = models.TextField(blank=True, null=True)  # This field type is a guess.
 
     class Meta:
         managed = True
         db_table = 'bogie_vkp1'
 
+
 class BookingsVkp4(models.Model):
     pnr = models.IntegerField(primary_key=True)
-    p_name = models.CharField(max_length=50)
+    p_name = models.TextField()  # This field type is a guess.
     p_age = models.IntegerField()
-    p_gender = models.CharField(max_length=10, blank=True, null=True)
-    p_source = models.CharField(max_length=50)
-    p_destination = models.CharField(max_length=50)
-    journey_date = models.DateField()
+    p_gender = models.TextField(blank=True, null=True)  # This field type is a guess.
+    p_source = models.TextField()  # This field type is a guess.
+    p_destination = models.TextField()  # This field type is a guess.
+    journey_date = models.TextField()  # This field type is a guess.
     seat = models.ForeignKey('SeatVkp1', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
@@ -34,8 +35,9 @@ class RouteStationVkp1(models.Model):
         managed = True
         db_table = 'route_station_vkp1'
 
+
 class RouteVkp1(models.Model):
-    route_id = models.CharField(primary_key=True, max_length=10)
+    route_id = models.TextField(primary_key=True)  # This field type is a guess.
     no_of_stations = models.IntegerField()
     train = models.ForeignKey('TrainVkp1', models.DO_NOTHING, blank=True, null=True)
 
@@ -45,9 +47,9 @@ class RouteVkp1(models.Model):
 
 
 class SeatVkp1(models.Model):
-    seat_id = models.CharField(primary_key=True, max_length=10)
+    seat_id = models.TextField(primary_key=True)  # This field type is a guess.
     bogie = models.ForeignKey(BogieVkp1, models.DO_NOTHING, blank=True, null=True)
-    seat_status = models.CharField(max_length=50, blank=True, null=True)
+    seat_status = models.TextField(blank=True, null=True)  # This field type is a guess.
 
     class Meta:
         managed = True
@@ -55,8 +57,8 @@ class SeatVkp1(models.Model):
 
 
 class StationVkp1(models.Model):
-    station_id = models.CharField(primary_key=True, max_length=10)
-    stations_name = models.CharField(unique=True, max_length=10, blank=True, null=True)
+    station_id = models.TextField(primary_key=True)  # This field type is a guess.
+    stations_name = models.TextField(unique=True, blank=True, null=True)  # This field type is a guess.
 
     class Meta:
         managed = True
@@ -64,14 +66,14 @@ class StationVkp1(models.Model):
 
 
 class TrainVkp1(models.Model):
-    train_id = models.CharField(primary_key=True, max_length=10)
-    train_name = models.CharField(max_length=50)
-    train_type = models.CharField(max_length=50, blank=True, null=True)
+    train_id = models.TextField(primary_key=True)  # This field type is a guess.
+    train_name = models.TextField()  # This field type is a guess.
+    train_type = models.TextField(blank=True, null=True)  # This field type is a guess.
     no_of_bogies = models.IntegerField()
-    source_name = models.CharField(max_length=50)
-    dest_name = models.CharField(max_length=50)
-    departure_time = models.CharField(max_length=20, blank=True, null=True)
-    arrival_time = models.CharField(max_length=20, blank=True, null=True)
+    source_name = models.TextField()  # This field type is a guess.
+    dest_name = models.TextField()  # This field type is a guess.
+    departure_time = models.TextField(blank=True, null=True)  # This field type is a guess.
+    arrival_time = models.TextField(blank=True, null=True)  # This field type is a guess.
 
     class Meta:
         managed = True
