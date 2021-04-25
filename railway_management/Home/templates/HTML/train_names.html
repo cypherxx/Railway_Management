@@ -18,7 +18,13 @@
       console.log(val);
     }
   </script>
-
+  <script>
+    function reply(){
+      var id_tag = event.target.id;
+      document.getElementById('ModalLongTitle').innerHTML = id_tag
+      
+    }
+  </script>
 </head>
 
 <body>
@@ -28,49 +34,46 @@
       <a class="navbar-brand" href="#">Railway Reservations</a>
     </div>
   </nav>
+  <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content border border-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLongTitle">
+          
+          </h5>
   
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+  
+        <div class="modal-body">
+          <div class="container">
+  
+            <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Train ID : </h2>
+            <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Train Name :  </h2>
+            <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Train Type : </h2>
+            <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Bogies : </h2>
+            <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Source : </h2>
+            <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Destination : </h2>
+            <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Route : </h2>
+            <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Departure Time : </h2>
+            <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Arrival Time :</h2>
+            <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Seats available : </h2>
+  
+            <button class="btn btn-outline-dark" style="float: right;">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="content">
     <h2 style="text-align: center;font-family: Georgia;color: rgb(78, 75, 75); font-weight: 600;margin-top: 75px; padding-bottom: 30px;">
       Trains From {{s}} to {{d}}
     </h2>
     <div class="row justify-content-evenly">
       {% for i in t_names %}
-      {% with s1=details|get_item:i %}
-      <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content border border-dark">
-        <div class="modal-header">
-          <h5 class="modal-title" id="ModalLongTitle">
-            <strong>{{i}}</strong>
-          </h5>
-         
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        
-        <div class="modal-body">
-           <div class="container">
-             
-             <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Train ID :  {{s1.0}}</h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">
-             <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Train Name :  {{s1.1}} </h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">
-             <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Train Type :  {{s1.2}}</h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">
-             <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Bogies :  {{s1.3}}</h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">
-             <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Source :  {{s1.4}}</h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">
-             <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Destination :  {{s1.5}}</h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">
-             <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Route : </h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">
-             <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Departure Time :  {{s1.6}}</h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">
-             <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Arrival Time :  {{s1.7}}</h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">
-             <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Seats available : </h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">
-            
-             <button class="btn btn-outline-dark" style="float: right;">Book Now</button>
-           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
       <div class="card card-pos" style="width: 18rem; height: 320px;">
         <img src="static/IMAGES/train1.jfif" class="card-img-top" alt="" style="padding-top: 5px;">
         <div class="card-body">
@@ -78,11 +81,10 @@
           <h2>Seats Available : </h2>
           <div class="cont">
             <a href="#ModalCenter" data-bs-toggle="modal" data-bs-target="#ModalCenter" name="{{i.0}}"
-              class="btn btn-outline-dark">Check</a>
+              class="btn btn-outline-dark" id="{{i}}" onclick="reply()">Check</a>
           </div>
         </div>
       </div>
-      {% endwith %}
       {% endfor %}
     </div>
   </div>
