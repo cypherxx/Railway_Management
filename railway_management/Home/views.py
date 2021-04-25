@@ -22,7 +22,7 @@ def get_train_list(request):
         cur.callfunc('get_train_names',myvar,[source_name,dest_name])
         train_list1=myvar.getvalue().fetchall()
         print(train_list1)
-        return render(request,'HTML/train_names.html',{'t_names':train_list1})
+        return render(request,'HTML/train_names.html',{'t_names':train_list1,'s':source_name,'d':dest_name})
 
 def get_train_info(request):
     if request.method=='POST':
@@ -32,8 +32,16 @@ def get_train_info(request):
         cur=conn.cursor()
         myvar= cur.var(cx_Oracle.CURSOR)
         cur.callfunc('get_train_details',myvar,[train_name])
-        train_info = myvar.getvalue().fetchall()
-        print(train_info)
-        return render(request,'HTML/index.html',{'t_names2':train_info})
+        train_list1=myvar.getvalue().fetchall()
+        train_list1=list(sum(train_list1,()))
+        myvar2= cur.var(cx_Oracle.CURSOR)
+        s=train_list1[0]
+        cur.callfunc('get_train_route',myvar2,[s])
+        t=myvar2.getvalue().fetchall()
+        train_info_list=list(sum(t, ()))
+        train_list1.append(train_info_list)
+        print(train_list1)
+        return render(request,'HTML/train_names.html',{'t_names2':train_list1,'route':train_info_list})
+
 
 

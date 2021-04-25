@@ -4,7 +4,9 @@ train_name varchar2(50) NOT NULL,
 train_type varchar2(50),
 no_of_bogies number(10) NOT NULL,
 source_name varchar2(50) NOT NULL,
-dest_name varchar2(50) NOT NULL
+dest_name varchar2(50) NOT NULL,
+departure_time varchar2(20),
+arrival_time varchar2(20),
 );
 
 CREATE TABLE route_vkp1(

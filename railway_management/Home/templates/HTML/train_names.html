@@ -59,20 +59,20 @@
     </div>
   </div>
   <div class="content">
-    <h2 style="text-align: center;font-family: Georgia, 'Times New Roman', Times, serif;font-weight: 600;margin-top: 75px;">
-      List Of Trains
+    <h2 style="text-align: center;font-family: Georgia;color: rgb(78, 75, 75); font-weight: 600;margin-top: 75px; padding-bottom: 30px;">
+      Trains From {{s}} to {{d}}
     </h2>
     <div class="row justify-content-evenly">
       {% for i in t_names %}
     
-      <div class="card card-pos" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+      <div class="card card-pos" style="width: 18rem; height: 320px;">
+        <img src="static/IMAGES/train1.jfif" class="card-img-top" alt="" style="padding-top: 5px;">
         <div class="card-body">
     
           <h2>{{i.0}}</h2>
           <h2>Seats Available : </h2>
           <div class="cont">
-            <a href="#ModalCenter" data-bs-toggle="modal" data-bs-target="#ModalCenter"
+            <a href="#ModalCenter" data-bs-toggle="modal" data-bs-target="#ModalCenter" name="{{i.0}}"
               class="btn btn-outline-dark">Check</a>
           </div>
         </div>
