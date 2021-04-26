@@ -19,7 +19,7 @@
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">MITAOE Railway Reservations</a>
+            <a class="navbar-brand" href="#"> MITAOE Railway Reservations</a>
         </div>
     </nav>
     
@@ -28,12 +28,12 @@
         <br>
         <br>
         <br>
-        <h2 style="text-align: center;font-family: Georgia, 'Times New Roman', Times, serif;font-weight: 600;">Enter Your Required Train Name</h2>
-        <form method="POST" action="{% url 'details_train' %}"
+        <h2 style="text-align: center;font-family: Georgia, 'Times New Roman', Times, serif;font-weight: 600;">Enter Your PNR Number</h2>
+        <form method="POST" action="{% url 'b_details' %}"
             class="form-inline d-flex justify-content-center md-form form-sm mt-4">
             {% csrf_token %}
            
-            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search your train details here"
+            <input class="form-control form-control-sm ml-3 w-75" type="text" style="width: 20%; height: 20%;" placeholder="Search your booking details here"
                 aria-label="Search" name="query" id="search">
             <button class="btn btn-outline-dark" id="search">
                 <i class="fa fa-search" type="submit"></i>
@@ -41,7 +41,7 @@
         </form>
     </section>
     <br>
-    <img src="{% static 'IMAGES/train16.jpg' %}" alt="train_img" class=" w-100" id="f-img">
+    <img src="{% static 'IMAGES/train17.jfif' %}" alt="train_img" class=" w-100" id="f-img">
     <footer class='w-100 foot'>
         <p class="footer-text"
             style="text-align: center;font-weight: 500;font-family: Georgia, 'Times New Roman', Times, serif;">© 2021

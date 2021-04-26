@@ -13,19 +13,23 @@
     <link rel="stylesheet" href="{% static 'CSS/booking.css' %}">
     
 
-    <title>RAILWAY RESERVATIONS</title>
+    <title>MITAOE RAILWAY RESERVATIONS</title>
 </head>
 
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Railway Reservations</a>
+            <a class="navbar-brand" href="#">MITAOE Railway Reservations</a>
         </div>
     </nav>
+    
     <form action="{% url 'send_m' %}" method="POST">
         
         <div class="booking-form">
             {% csrf_token %}
+            <h2 style="text-align: center;font-family: Georgia;color: white; font-weight: 600;margin-top: 10px; margin-bottom: 20px;">
+                Book Your Ticket
+              </h2>
             <div class="row justify-content-evenly">
                 <div class="col-sm-6 col-md-6 col-lg-6">
                     <label for="fname" style="font-size:18px;">First name</label>
@@ -60,6 +64,20 @@
             <input type="text" name="source" id="" class="form-control" placeholder="Your Source location" required >
             <label for="destination" style="font-size:18px;">Destination</label>
             <input type="text" name="destination" id="" placeholder="Your desired destination" class="form-control" required >
+            <label for="train" style="font-size:18px;">Train name</label>
+            <input type="text" name="train" id="" placeholder="Name of the train" class="form-control" required >
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <label for="gender" style="margin-bottom: 10px; font-size: 18px;">Bogie Type</label>
+                <ul style="display: flex;">
+                    <li style="display: flex;margin-left: -25px">
+                        <input class="flexing" type="radio" name="bogie_type" value="AC"><span style="color: #ffff;">AC</span>
+                        
+                    </li>
+                    <li style="display: flex;margin-left: 10px;">
+                        <input class="flexing" type="radio" name="bogie_type" value="NON AC"><span style="color: #ffff;">NON AC</span>
+                    </li>
+                </ul>
+            </div>
             <label for="date" style="font-size:18px;">Date</label>
             <input type="date" name="date" id="" class="form-control" required>
         <button class="btn btn-outline-dark" type="submit">SUBMIT</button>
@@ -69,7 +87,7 @@
 <footer class='w-100 foot'>
     <p class="footer-text"
         style="text-align:left; color: #fff; center;font-weight: 500;font-family: Georgia, 'Times New Roman', Times, serif;">© 2021
-        RAILWAY RESERVATION</p>
+        MITAOE RAILWAY RESERVATION</p>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"

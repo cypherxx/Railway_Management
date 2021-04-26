@@ -130,7 +130,6 @@ END;
 
 create or replace PROCEDURE view_bookings_2(pnr_id bookings_vkp4.pnr%type, r_booking OUT sys_refcursor) 
 AS
-
 BEGIN
 open r_booking for
 select * from bookings_vkp4

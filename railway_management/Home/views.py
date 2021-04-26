@@ -9,15 +9,29 @@ from django.contrib import messages
 import random
 def index(request):
     return render(request,'HTML/index.html')
+def bookings_2(request):
+    return render(request,'HTML/passenger_enquiry.html')
 
 def train_details(request):
     return render(request,'HTML/get_train_details.html')
 
 def book_seat(request):
     return render(request,'HTML/booking.html')
+def booking_detail(request):
+    if request.method=='POST':
+        pnr=request.POST.get('query')
+        conn=cx_Oracle.connect('qwerty','qwerty','localhost/orcl',encoding = 'UTF-8')
+        cur=conn.cursor()
+        myvar= cur.var(cx_Oracle.CURSOR)
+        cur.callproc('view_bookings_2',[pnr,myvar])
+        d=myvar.getvalue().fetchall()
+        d1=list(sum(d,()))
+        print(d1)
+        return render(request,'HTML/booking_details.html',{'s1':d1})
+def search_pnr(request):
+    return render(request,'HTML/search_pnr.html')
 
 def details_of_train(request):
-    
             i=request.POST.get('query')
             conn=cx_Oracle.connect('qwerty','qwerty','localhost/orcl',encoding = 'UTF-8')
             cur=conn.cursor()
@@ -71,24 +85,33 @@ def send_email(request):
     conn=cx_Oracle.connect('qwerty','qwerty','localhost/orcl',encoding = 'UTF-8')
     cur=conn.cursor()
     c=cur.var(cx_Oracle.CURSOR)
-    cur.callproc('b_type',['SECUNDERABAD - VISAKHAPATNAM AC DURONTO EXPRESS','AC',c])
+    train=request.POST.get('train')
+    bogie=request.POST.get('bogie_type')
+    cur.callproc('b_type',[train,bogie,c])
     t=c.getvalue().fetchall()
     t1=t[0][0]
+    print(t1)
+    cur.execute("update seat_vkp1 set seat_status='NOT AVAILABLE' where seat_id='%s'" % t1)
+    conn.commit()
     fname=request.POST.get('fname')
     lname=request.POST.get('lname')
     e_mail=request.POST.get('email')
     print(e_mail)
     age=request.POST.get('age')
     gender=request.POST.get('gender')
+
     src=request.POST.get('source')
     dest=request.POST.get('destination')
     date=request.POST.get('date')
     n=random.randint(1000000000,9999999999)
-    
+    user=BookingsVkp4(pnr=n, p_name=fname+' '+lname, p_age=age, p_gender=gender[0], p_source=src, p_destination=dest, journey_date=date,seat=SeatVkp1(seat_id=str(t1)))
+    user.save()
     html_message = loader.render_to_string(
                                 'HTML/mail_body.html',
                                 {
-                                    'pnr': n,
+                                    't': train,
+                                    'bogie': bogie,
+                                    'pnr':n,
                                     'fname' : fname,
                                     'lname' : lname,
                                     'gender': gender,
