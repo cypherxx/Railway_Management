@@ -53,26 +53,6 @@ CHECK(p_gender='F' OR p_gender='M'),
 seat_id varchar2(10) REFERENCES seat_vkp1(seat_id)
 );
 
-CREATE OR REPLACE TRIGGER journey_date_trigger4 BEFORE INSERT ON
-bookings_vkp4
-FOR EACH ROW
-BEGIN
-IF (:NEW.journey_date-sysdate>7) THEN
-raise_application_error(-20001, 'You cannot book a seat more than 7 days early');
-END IF;
-END;
-
-CREATE OR REPLACE TRIGGER SR_DS1
-BEFORE INSERT ON BOOKINGS_VKP4
-FOR EACH ROW
-BEGIN
- IF(:NEW.P_SOURCE = :NEW.P_DESTINATION)
- THEN
- raise_application_error(-20001, 'SOURCE AND DESTINATION CANNOT BE SAME');
- END IF;
-END;
-
-
 create or replace function get_train_details(train train_vkp1.train_name%type)
 return sys_refcursor
 as
@@ -89,8 +69,13 @@ return sys_refcursor
 as
 trains sys_refcursor;
 begin
+IF(src_name=destination)
+ THEN
+ raise_application_error(-20001, 'SOURCE AND DESTINATION CANNOT BE SAME');
+ END IF;
 open trains for
 select train_name from train_vkp1 where source_name=src_name and dest_name=destination;
+
 return trains;
 end;
 
@@ -105,3 +90,51 @@ select stations_name from station_vkp1 where station_id in (select station_id fr
 
 return train_route;
 end;
+
+
+create or replace TRIGGER journey_date_trigger4 BEFORE INSERT ON
+bookings_vkp4
+FOR EACH ROW
+BEGIN
+IF (:NEW.journey_date-sysdate>7) THEN
+raise_application_error(-20001, 'You cannot book a seat more than 7 days early');
+END IF;
+END;
+
+create or replace TRIGGER SR_DS1
+BEFORE INSERT ON BOOKINGS_VKP4
+FOR EACH ROW
+BEGIN
+ IF(:NEW.P_SOURCE = :NEW.P_DESTINATION)
+ THEN
+ raise_application_error(-20001, 'SOURCE AND DESTINATION CANNOT BE SAME');
+ END IF;
+END;
+
+create or replace PROCEDURE b_type(t_name train_vkp1.train_name%type, bog_t bogie_vkp1.bogie_type%type, type12 OUT sys_refcursor) 
+AS
+
+BEGIN
+open type12 for
+select seat_id from seat_vkp1
+where seat_vkp1.seat_status='AVAILABLE' AND seat_vkp1.bogie_id IN(select bogie_id from bogie_vkp1 where bogie_type = bog_t AND bogie_vkp1.train_id IN (select train_id from train_vkp1 where train_vkp1.train_name=t_name))
+FETCH FIRST 1 ROW ONLY;
+END;
+
+create or replace PROCEDURE seat_avail(t_name train_vkp1.train_name%type, seat OUT number) 
+AS
+BEGIN
+select count(seat_id) into seat from seat_vkp1
+where seat_vkp1.seat_status='AVAILABLE' AND seat_vkp1.bogie_id IN(select bogie_id from bogie_vkp1 where bogie_vkp1.train_id IN (select train_id from train_vkp1 where train_vkp1.train_name=t_name));
+END;
+
+create or replace PROCEDURE view_bookings_2(pnr_id bookings_vkp4.pnr%type, r_booking OUT sys_refcursor) 
+AS
+
+BEGIN
+open r_booking for
+select * from bookings_vkp4
+where bookings_vkp4.pnr=pnr_id;
+END;
+
+

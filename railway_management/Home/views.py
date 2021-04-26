@@ -88,6 +88,7 @@ def send_email(request):
     html_message = loader.render_to_string(
                                 'HTML/mail_body.html',
                                 {
+                                    'pnr': n,
                                     'fname' : fname,
                                     'lname' : lname,
                                     'gender': gender,
